@@ -9,6 +9,7 @@ public class Game {
     Direction direction;
     
     private Cell head;
+    private Cell apple;
 
     Game() {
         snake = new ArrayList<>();
@@ -19,7 +20,7 @@ public class Game {
         head = snake.get(0);
     }
 
-    void update() {
+    private void moveSnake() {
         // tail
         for (int i = snake.size() - 1; i > 0; i--) {
             Cell current = snake.get(i);
@@ -52,5 +53,19 @@ public class Game {
                 break;
         }
         head.updateCoordinates();
+    }
+
+    private void eat() {
+        if (head != apple) {
+            return;
+        }
+
+        snake.add(snake.get(snake.size() - 1));
+    }
+
+    void update() {
+        eat();
+        moveSnake();
+
     }
 }

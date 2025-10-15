@@ -12,4 +12,8 @@ public class Cell {
         x = column * Game.CELL_SIZE;
         y = row * Game.CELL_SIZE;
     }
+
+    public boolean equals(Cell obj) {
+        return (this.x == obj.x && this.y == obj.y);
+    }
 }
