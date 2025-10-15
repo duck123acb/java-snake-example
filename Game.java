@@ -12,19 +12,21 @@ public class Game {
 
     Game() {
         snake = new ArrayList<>();
-        snake.add(new Cell(ROWS / 2, COLUMNS / 2));
+        snake.add(new Cell(ROWS / 2, 7));
+        snake.add(new Cell(ROWS / 2, 6));
+        snake.add(new Cell(ROWS / 2, 5));
+        snake.add(new Cell(ROWS / 2,4));
         head = snake.get(0);
     }
 
     void update() {
         // tail
-        for (int i = 1; i < snake.size(); i++) {
+        for (int i = snake.size() - 1; i > 0; i--) {
             Cell current = snake.get(i);
-            Cell previous = snake.get(i-1); 
+            Cell previous = snake.get(i - 1);
 
             current.row = previous.row;
             current.column = previous.column;
-
             current.updateCoordinates();
         }
 
