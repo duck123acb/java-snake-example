@@ -12,6 +12,9 @@ public class GamePanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        g.setColor(Color.RED);
+        g.fillRect(game.apple.x, game.apple.y, Game.CELL_SIZE, Game.CELL_SIZE);
+
         g.setColor(Color.GREEN);
 
         for (Cell cell : game.snake) {

@@ -6,12 +6,15 @@ public class Game {
     static final int CELL_SIZE = 32;
 
     ArrayList<Cell> snake;
+    Cell apple;
     Direction direction;
     
     private Cell head;
-    private Cell apple;
 
     Game() {
+        apple = new Cell(0, 0);
+        moveApple();
+
         snake = new ArrayList<>();
         snake.add(new Cell(ROWS / 2, 7));
         snake.add(new Cell(ROWS / 2, 6));
@@ -56,16 +59,26 @@ public class Game {
     }
 
     private void eat() {
-        if (head != apple) {
+        if (!head.equals(apple)) {
             return;
         }
 
-        snake.add(snake.get(snake.size() - 1));
+        moveApple();
+        Cell tail = snake.get(snake.size() - 1);
+        snake.add(new Cell(tail.row, tail.column));
+    }
+
+    private void moveApple() {
+        int x = (int)(Math.random() * COLUMNS-1);
+        int y = (int)(Math.random() * ROWS-1);
+
+        apple.column = x;
+        apple.row = y;
+        apple.updateCoordinates();
     }
 
     void update() {
         eat();
         moveSnake();
-
     }
 }
